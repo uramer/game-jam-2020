@@ -10,8 +10,6 @@ public class UnitsDisplay : MonoBehaviour
 	[SerializeField] SelectUnits selectUnitsScript;
 	[SerializeField] Canvas canvas;
 
-	public Sprite sprite;
-
 	private float canvasWidth, canvasHeight;
 	private List<GameObject> texts = new List<GameObject>();
 	//private List<GameObject> iconsOfUnits = new List<GameObject>();
@@ -24,21 +22,22 @@ public class UnitsDisplay : MonoBehaviour
     	canvasWidth = rt.rect.width;
     	canvasHeight = rt.rect.height;
     	//Debug.Log(canvasWidth + " " + canvasHeight);
-    	//addIcon("icon", new Vector3(10-canvasWidth/2, 10-canvasHeight/2, 0));
 
+    	GameObject[] units = GameObject.FindGameObjectsWithTag("Player");
+    	//SpriteRenderer sr = units[0].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+    	//addIcon("icon", new Vector3(10-canvasWidth/2, 10-canvasHeight/2, 0), sr);
 
-    	/*GameObject[] units = GameObject.FindGameObjectsWithTag("Player");
+    	float pos = 10-canvasWidth/2;
     	foreach(GameObject unit in units) {
-
-
-    		texts.Add(addText(unit.name, new Vector3(pos, 20 - canvasHeight / 2, 0), Color.black));
+    		SpriteRenderer sr = unit.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+    		unitToIcon[unit] = addIcon("icon", new Vector3(pos, 10-canvasHeight/2, 0), sr);
     		pos += 50;
-    	}*/
+    	}
     }
 
     void Update()
     {
-    	foreach(GameObject t in texts) {
+    	/*foreach(GameObject t in texts) {
     		Destroy(t);
     	}
     	texts = new List<GameObject>();
@@ -53,7 +52,7 @@ public class UnitsDisplay : MonoBehaviour
     			texts.Add(addText(unit.name, new Vector3(pos, 20 - canvasHeight / 2, 0), Color.black));
     		}
     		pos += 120;
-    	}
+    	}*/
     }
 
     GameObject addText(string txt, Vector3 pos, Color color) {
@@ -70,16 +69,17 @@ public class UnitsDisplay : MonoBehaviour
         return text;
     }
 
-    void addIcon(string name, Vector3 pos) {
+    GameObject addIcon(string name, Vector3 pos, SpriteRenderer sr) {
     	GameObject icon = new GameObject();
     	icon.name = name;
     	icon.transform.parent = canvas.transform;
     	Image image = icon.AddComponent<Image>();
-    	image.sprite = sprite;
+    	image.sprite = sr.sprite;
+    	image.color = sr.color;
     	RectTransform rectTransform = image.GetComponent<RectTransform>();
     	rectTransform.pivot = new Vector2(0, 0);
-        rectTransform.localPosition = pos; // new Vector3(10-canvasWidth/2, 10-canvasHeight/2, 0);
+        rectTransform.localPosition = pos;
         rectTransform.sizeDelta = new Vector2(30, 30);
-        Debug.Log(icon.GetInstanceID());
+        return icon;
     }
 }
