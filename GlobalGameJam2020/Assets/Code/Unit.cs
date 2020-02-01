@@ -7,7 +7,8 @@ public class Unit : MonoBehaviour {
     [SerializeField] public float detectionRange = 3;
     [SerializeField] public float sightRange = 4;
     protected NavMeshAgent agent = null;
-    protected GameObject internalObject = null;
+
+    protected GameObject internalGameObject = null;
 
     public enum State {
         Idle,
@@ -16,15 +17,11 @@ public class Unit : MonoBehaviour {
         Dead
     }
 
-    protected State animationState = State.Idle;
+    protected State state = State.Idle;
 
-    /*protected static GameObject[] GetUnits() {
-        return GameObject.Find("/Units").transform.children;
-    }*/
-
-    public void Start() {
+    protected void Start() {
         agent = GetComponent<NavMeshAgent>();
-        internalObject = transform.GetChild(0).gameObject;
+        internalGameObject = transform.GetChild(0).gameObject;
     }
 
     public void Pathfind(Vector3 position) {
@@ -32,15 +29,18 @@ public class Unit : MonoBehaviour {
         agent.speed = speed;
     }
 
-    public void Update() {
-        /*Debug.Log(this.transform.position);
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit m_HitInfo = new RaycastHit();
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
-                agent.SetDestination(rayCastHit);
-        }*/
+    public State GetState() {
+        return state;
+    }
+
+    public GameObject GetInternalGameObject() {
+        return internalGameObject;
+    }
+
+    public void Die() {
+        state = State.Dead;
+        internalGameObject.GetComponent<Rigidbody2D>().simulated = false;
+        internalGameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
 }
