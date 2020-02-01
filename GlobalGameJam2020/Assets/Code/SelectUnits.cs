@@ -74,7 +74,7 @@ public class SelectUnits : MonoBehaviour
         }
     }
 
-    List<GameObject> GetSelected() {
+    public List<GameObject> GetSelected() {
         return selected;
     }
 }
