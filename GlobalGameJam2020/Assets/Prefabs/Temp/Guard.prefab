@@ -108,14 +108,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8406197148500932683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52a455c3e81c47b4593345dbb4273e47, type: 3}
+  m_Script: {fileID: 11500000, guid: b4dc6265568c94e47b2d57eb196c80ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  distance: 0.001
+  distance: 0.01
   bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
-  nodes: []
+  waypoints: []
   waitTime: []
-  players: []
-  distanceToTarget: 0.5
-  target: {x: 0, y: 0, z: 0}
+  shotDelay: 0.5
+  units: []
+  chaseDistance: 300
+  shootDistance: 100
+  target: {fileID: 0}
