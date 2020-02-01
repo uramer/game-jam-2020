@@ -58,7 +58,8 @@
      <Compile Include="Assets\Code\BulletTrail.cs" />
      <Compile Include="Assets\Code\GuardMovement.cs" />
      <Compile Include="Assets\Code\RandomTile.cs" />
-     <Compile Include="Assets\Code\TilemapNavmesh.cs" />
+     <Compile Include="Assets\Code\SelectUnits.cs" />
+     <Compile Include="Assets\Code\Unit.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

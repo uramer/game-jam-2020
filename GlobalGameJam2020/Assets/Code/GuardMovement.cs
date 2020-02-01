@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardMovement : MonoBehaviour
+public class GuardMovement : Unit
 {    
-    [SerializeField] private float speed;
-    [SerializeField] private float distance;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject[] waypoints;
     [SerializeField] private float[] waitTime;
 
     [SerializeField] private float shotDelay;
-
-    [SerializeField] private GameObject[] units;
+    [SerializeField] private float waypointThreshold = 0.1f;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float shootDistance;
-    public GameObject target;
+    public Unit target;
     private int currentWaypoint = 0;
     private float patrolWaitTime = 0;
     private float shotWaitTime = 0;
@@ -28,24 +25,36 @@ public class GuardMovement : MonoBehaviour
 
     private State state = State.Patrol;
 
+    private void Start() {
+        patrolWaitTime = waitTime[currentWaypoint];
+    }
+
     private void MoveTo(GameObject target) {
-        this.transform.position += speed * Time.deltaTime * (target.transform.position - this.transform.position).normalized;
+        Pathfind(target.transform.position);
+        //this.transform.position += speed * Time.deltaTime * (target.transform.position - this.transform.position).normalized;
     }
 
     private float DistanceFromMe(GameObject a) {
-        return (a.transform.position - this.gameObject.transform.position).magnitude;
+        return (a.transform.position - this.transform.position).magnitude;
     }
 
-    private GameObject ChooseClosest()
+    private float DistanceFromMe(Unit a) {
+        return (a.transform.position - this.transform.position).magnitude;
+    }
+
+    private Unit ChooseClosest()
     {
-        GameObject closest = null;
+        Unit closest = null;
         float closestDistance = 0f;
-        foreach (GameObject a in units)
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
+        
+        foreach (GameObject obj in gameObjects)
         {
-            if(a == this.gameObject) continue;
-            float distance = DistanceFromMe(a);
+            if(obj == this.gameObject) continue;
+            float distance = DistanceFromMe(obj);
+            Unit unit = obj.GetComponent<Unit>();
             if(closest == null || closestDistance > distance) {
-                closest = a;
+                closest = unit;
                 closestDistance = distance;
             }
         }
@@ -56,16 +65,15 @@ public class GuardMovement : MonoBehaviour
     private void Detect()
     {
         target = ChooseClosest();
-        if (DistanceFromMe(target) < chaseDistance)
+        if (DistanceFromMe(target.gameObject) < sightRange + target.detectionRange)
             state = State.Chase;
     }
 
     private void Patrol()
     {
-        if (DistanceFromMe(waypoints[currentWaypoint]) >= distance)
+        if (DistanceFromMe(waypoints[currentWaypoint]) >= waypointThreshold)
         {
             MoveTo(waypoints[currentWaypoint]);
-            patrolWaitTime = waitTime[currentWaypoint];
         }
         else
         {
@@ -73,6 +81,7 @@ public class GuardMovement : MonoBehaviour
                 currentWaypoint++;
                 if (currentWaypoint >= waypoints.Length)
                     currentWaypoint = 0;
+                patrolWaitTime = waitTime[currentWaypoint];
             }
             else patrolWaitTime -= Time.deltaTime;
         }
@@ -81,7 +90,7 @@ public class GuardMovement : MonoBehaviour
     private void Chase()
     {
         if (DistanceFromMe(target) > shootDistance * 0.8)
-            MoveTo(target);
+            MoveTo(target.gameObject);
         else {
             shotWaitTime = shotDelay;
             state = State.Shoot;
