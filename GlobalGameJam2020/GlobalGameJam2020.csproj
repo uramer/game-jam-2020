@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{07A21C90-D344-AE1A-8456-9910C203B41A}</ProjectGuid>
+    <ProjectGuid>{41CF8584-0474-DF27-EED7-34389BD41AFD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Unity.TextMeshPro</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -231,21 +231,6 @@
     </Reference>
     <Reference Include="Managed/UnityEditor">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.VR">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Graphs">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -594,72 +579,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{3BB3FA27-B9AA-7EC6-4E7C-EE51EC3271F7}</Project>
-      <Name>UnityEditor.UI</Name>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{7C87BE25-0A2E-FC58-1E14-37330F289AA3}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{F37EB8D3-595B-2A8E-9D57-98253E4F534B}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{BA355BDC-D9AC-4DF0-CBE7-0822160BAB0E}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{6940CB9D-2F64-7CD4-BA0F-5610D5AB47B0}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{C12CEEC6-100C-58A2-DE36-314E4DE5E40B}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{C540080A-BED7-978E-DDFC-EE09E5DBB722}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{FB59C224-D4E6-39F8-9116-391BC3D3E954}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
+      <Project>{9B01B14B-B87E-A8D5-396F-11C50473230C}</Project>
+      <Name>Unity.2D.Tilemap.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{3BB3FA27-B9AA-7EC6-4E7C-EE51EC3271F7}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\AssemblyInfo.cs.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\FastAction.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\MaterialReferenceManager.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Asset.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Character.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_CharacterInfo.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_ColorGradient.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_CoroutineTween.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_DefaultControls.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Dropdown.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_EditorResourceManager.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_FontAsset.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_FontAssetCommon.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_FontAssetUtilities.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_FontFeatureTable.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_FontFeaturesCommon.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_InputField.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_InputValidator.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_LineInfo.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_ListPool.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_MaterialManager.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_MeshInfo.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_ObjectPool.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_PackageResourceImporter.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_RichTextTagStack.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_RichTextTagsCommon.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_ScrollbarEventHandler.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SelectionCaret.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Settings.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_ShaderUtilities.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Sprite.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SpriteAnimator.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SpriteAsset.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SpriteAssetImportFormats.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SpriteCharacter.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SpriteGlyph.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Style.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_StyleSheet.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SubMesh.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_SubMeshUI.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_Text.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_TextElement.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_TextElement_Legacy.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_TextInfo.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_TextParsingUtilities.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_TextUtilities.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_UpdateManager.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMP_UpdateRegistery.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMPro_EventManager.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMPro_ExtensionMethods.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMPro_MeshUtilities.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMPro_Private.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TMPro_UGUI_Private.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TextContainer.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TextMeshPro.cs" />
-    <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\TextMeshProUGUI.cs" />
+    <Compile Include="Assets\Code\Guard Movement.cs" />
+    <Compile Include="Assets\Code\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\PolygonChangeShapeWindow.uxml" />
