@@ -33,6 +33,10 @@ public class Unit : MonoBehaviour {
         return state;
     }
 
+    public GameObject GetInternalGameObject() {
+        return internalGameObject;
+    }
+
     public void Die() {
         state = State.Dead;
         internalGameObject.GetComponent<Rigidbody2D>().simulated = false;

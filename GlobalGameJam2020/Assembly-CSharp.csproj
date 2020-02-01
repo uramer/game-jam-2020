@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Code\BulletTrail.cs" />
+     <Compile Include="Assets\Code\CameraMovement.cs" />
      <Compile Include="Assets\Code\GuardMovement.cs" />
      <Compile Include="Assets\Code\RandomTile.cs" />
      <Compile Include="Assets\Code\SelectUnits.cs" />

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3101826697277944653}
   m_Layer: 0
   m_Name: Guard 1
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   waypointThreshold: 0.6
   chaseDistance: 3
   shootDistance: 1.5
+  FOV: 60
   target: {fileID: 0}
 --- !u!1 &6452028921501985120
 GameObject:
@@ -89,9 +90,9 @@ GameObject:
   - component: {fileID: 6820341346956493303}
   - component: {fileID: 6082071620764869375}
   - component: {fileID: 3101826695824077287}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object
-  m_TagString: Untagged
+  m_TagString: EnemyInternal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

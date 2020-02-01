@@ -17,7 +17,7 @@ public class SelectUnits : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) {
             startMousePos = Input.mousePosition;
-            startPos = Camera.main.ScreenToWorldPoint(new Vector3(startMousePos.x, startMousePos.y, -Camera.main.transform.position.z));
+            startPos = Camera.main.ScreenToWorldPoint(new Vector3(startMousePos.x, startMousePos.y, -Camera.main.transform.position.z)); //FIX
         }
         if(Input.GetMouseButtonUp(0)) {
             Vector2 pos = Input.mousePosition;
