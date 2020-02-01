@@ -7,13 +7,13 @@ public class BulletTrail : MonoBehaviour
     [SerializeField] private float speed;
     private GameObject target;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        /*if (other.transform.gameObject.tag == "Enemy"){ }
-        else*/
-        Destroy(this);
-        if(other.gameObject == target)
-            Destroy(target);
+        if (other.gameObject.tag == "Enemy"){}
+        else
+            Destroy(this.gameObject);
+
+        if(other.gameObject == target){}
     }
 
     private void Start()
