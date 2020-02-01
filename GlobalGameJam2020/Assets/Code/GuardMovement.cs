@@ -6,11 +6,13 @@ public class GuardMovement : MonoBehaviour
 {    
     [SerializeField] private float speed;
     [SerializeField] private float distance;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject[] nodes;
     [SerializeField] private float[] waitTime;
 
     [SerializeField] private GameObject[] players;
     [SerializeField] private float distanceToTarget;
+    public Vector3 target;
 
     private int counter = 0;
     System.DateTime now;
@@ -40,9 +42,7 @@ public class GuardMovement : MonoBehaviour
 
     private void Detect()
     {
-        Vector3 target = ChooseClosest();
-
-        if (Mathf.Pow(Mathf.Pow(target.x, 2) + Mathf.Pow(target.y, 2), -2) - Mathf.Pow(Mathf.Pow(this.transform.position.x, 2) + Mathf.Pow(this.transform.position.y, 2), -2) < distanceToTarget)
+        if ((target - this.transform.position).magnitude < distanceToTarget)
             chosenMovement = 1;
         else
             chosenMovement = 0;
@@ -50,21 +50,20 @@ public class GuardMovement : MonoBehaviour
 
     private void Chase()
     {
+        if ((target - this.transform.position).magnitude > 0.25 * distanceToTarget)
+            this.transform.position += 2 * speed * (target - this.transform.position).normalized * Time.deltaTime;
 
+        //if ((target - this.transform.position).magnitude < 0.05 * distanceToTarget)
+         //   Instantiate(bullet, this.transform.position, this.transform.rotation, this.transform);   
     }
 
-    private Vector3 ChooseClosest()
+    private void ChooseClosest()
     {
         Vector3 closestPlayer = new Vector3(100, 100, 100);
-
         foreach (var a in players)
-        {
-            if (Mathf.Pow(Mathf.Pow(closestPlayer.x, 2) + Mathf.Pow(closestPlayer.y, 2), -2) - Mathf.Pow(Mathf.Pow(a.transform.position.x, 2) + Mathf.Pow(a.transform.position.y, 2), -2) > 0)
-            {
+            if ((closestPlayer - a.transform.position).magnitude > 0)
                 closestPlayer = a.transform.position;
-            }
-        }
-        return closestPlayer;
+        target = closestPlayer;
     }
 
     private void Update()

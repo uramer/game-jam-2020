@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6039687308585089840}
   - component: {fileID: 3765592919062178540}
   - component: {fileID: 5501457305537988421}
-  - component: {fileID: 760303456008097772}
+  - component: {fileID: 3732622488824808423}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Enemy
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &760303456008097772
+--- !u!114 &3732622488824808423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  distance: 0.0005
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
+  distance: 0.001
+  bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
+  nodes: []
+  waitTime: []
+  players: []
+  distanceToTarget: 0.5
+  target: {x: 0, y: 0, z: 0}
