@@ -35,10 +35,8 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 0
   sprites:
-  - {fileID: 21300000, guid: e83b415fd0369e8418bf4e0d14d7478e, type: 3}
   - {fileID: 21300000, guid: 86741dfc4b6906145a3db6408da13a1a, type: 3}
   spriteWeights:
-  - 1
   - 1
   animated: 0
   minAnimationSpeed: 1
