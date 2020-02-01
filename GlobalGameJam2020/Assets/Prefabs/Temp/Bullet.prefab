@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4003433095303325392}
   - component: {fileID: 5065691369865376332}
   - component: {fileID: 1973526625587600472}
-  - component: {fileID: 8232378823425612576}
   - component: {fileID: -302975201048547875}
   m_Layer: 0
   m_Name: Bullet
@@ -158,8 +157,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6022127
-        value: 0
+        time: 0.5947359
+        value: 0.088394165
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -207,27 +206,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!50 &8232378823425612576
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120972869674889915}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-302975201048547875
 MonoBehaviour:
   m_ObjectHideFlags: 0

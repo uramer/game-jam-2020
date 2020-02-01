@@ -1,87 +1,142 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using System;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class GuardMovement : Unit
 {    
     [SerializeField] private GameObject bullet;
-    [SerializeField] private GameObject[] waypoints;
-    [SerializeField] private float[] waitTime;
+    [SerializeField] private GameObject waypointsParent;
 
     [SerializeField] private float shotDelay;
-    [SerializeField] private float waypointThreshold = 0.1f;
+    [SerializeField] private float waypointThreshold = 0.6f;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float shootDistance;
+    [SerializeField] private float FOV = 120;
+
+    private List<Waypoint> waypoints = new List<Waypoint>();
     public Unit target;
     private int currentWaypoint = 0;
     private float patrolWaitTime = 0;
     private float shotWaitTime = 0;
-    private enum State {
+    private float radius = 0.5f;
+    private enum GuardState {
         Patrol,
         Chase,
         Shoot,
         Return
     }
 
-    private State state = State.Patrol;
+    private GuardState guardState = GuardState.Patrol;
 
-    private void Start() {
-        patrolWaitTime = waitTime[currentWaypoint];
-    }
+    protected void Start() {
+        base.Start();
 
-    private void MoveTo(GameObject target) {
-        Pathfind(target.transform.position);
-        //this.transform.position += speed * Time.deltaTime * (target.transform.position - this.transform.position).normalized;
+        Vector3 size = internalGameObject.GetComponent<Collider2D>().bounds.size;
+        radius = Math.Max(size.x, size.y);
+
+        foreach(Transform tr in waypointsParent.transform) {
+            waypoints.Add(tr.gameObject.GetComponent<Waypoint>());
+        }
+        patrolWaitTime = waypoints[0].waitTime;
     }
 
     private float DistanceFromMe(GameObject a) {
         return (a.transform.position - this.transform.position).magnitude;
     }
 
-    private float DistanceFromMe(Unit a) {
+    private float DistanceFromMe(MonoBehaviour a) {
         return (a.transform.position - this.transform.position).magnitude;
     }
 
-    private Unit ChooseClosest()
+    private void PickTarget()
     {
-        Unit closest = null;
-        float closestDistance = 0f;
+        target = null;
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
-        
-        foreach (GameObject obj in gameObjects)
-        {
-            if(obj == this.gameObject) continue;
-            float distance = DistanceFromMe(obj);
-            Unit unit = obj.GetComponent<Unit>();
-            if(closest == null || closestDistance > distance) {
-                closest = unit;
-                closestDistance = distance;
-            }
+        Unit unit = null;
+        List<Unit> units = new List<Unit>();
+        List<float> distances = new List<float>();
+
+        foreach (GameObject obj in gameObjects) {
+            unit = obj.GetComponent<Unit>();
+            if(unit == this) continue;
+            units.Add(unit);
+            distances.Add(DistanceFromMe(unit));
         }
-            
-        return closest;
+
+        Unit fastestWithinShot = null;
+        Unit closestSlow = null;
+        Unit closestFast = null;
+        float maxSpeed = 0f;
+        float minDistanceSlow = 0f;
+        float minDistanceFast = 0f;
+        
+        for(int i = 0; i < units.Count; i++)
+        {
+            unit = units[i];
+            if(unit.GetState() == State.Dead) continue;
+            float distance = distances[i];
+            Debug.Log($"distance {distance}");
+            float angle = Vector3.Angle(transform.forward, unit.transform.position - transform.position);
+            Debug.Log($"angle {angle}");
+            if(Math.Abs(angle) > FOV) continue;
+            /*RaycastHit2D lineOfSight = Physics2D.Raycast(
+                transform.position,
+                unit.transform.position - transform.position,
+                sightRange + unit.detectionRange
+            );
+            if(lineOfSight.collider == null) continue;
+            Debug.Log($"COLLIDED");
+            if(lineOfSight.collider.gameObject != unit.gameObject) continue;
+            Debug.Log($"LOS");*/
+            if(distance < shootDistance) {
+                if(fastestWithinShot == null || unit.speed > maxSpeed) {
+                    fastestWithinShot = unit;
+                    maxSpeed = unit.speed;
+                }
+            }
+            else if(speed <= unit.speed) {
+                if(closestSlow == null || distance < minDistanceSlow) {
+                    closestSlow = unit;
+                    minDistanceSlow = distance;
+                }
+            }
+            else if(closestFast == null || distance < minDistanceFast) {
+                    closestFast = unit;
+                    minDistanceFast = distance;
+                }
+        }
+
+        Debug.Log($"angle {fastestWithinShot != null} {closestSlow != null} {closestFast != null}");
+
+        if(fastestWithinShot != null) target = fastestWithinShot;
+        else if(closestSlow != null) target = closestSlow;
+        else target = closestFast;
     }
 
     private void Detect()
     {
-        target = ChooseClosest();
-        if (DistanceFromMe(target.gameObject) < sightRange + target.detectionRange)
-            state = State.Chase;
+        PickTarget();
+        if (target != null && (DistanceFromMe(target) < sightRange + target.detectionRange))
+            guardState = GuardState.Chase;
     }
 
     private void Patrol()
     {
+        //Debug.Log($"Patrol {currentWaypoint} {DistanceFromMe(waypoints[currentWaypoint])} {agent.destination}");
         if (DistanceFromMe(waypoints[currentWaypoint]) >= waypointThreshold)
         {
-            MoveTo(waypoints[currentWaypoint]);
+            Pathfind(waypoints[currentWaypoint].transform.position);
         }
         else
         {
             if(patrolWaitTime <= 0) {
                 currentWaypoint++;
-                if (currentWaypoint >= waypoints.Length)
+                if (currentWaypoint >= waypoints.Count)
                     currentWaypoint = 0;
-                patrolWaitTime = waitTime[currentWaypoint];
+                patrolWaitTime = waypoints[currentWaypoint].waitTime;
             }
             else patrolWaitTime -= Time.deltaTime;
         }
@@ -90,10 +145,10 @@ public class GuardMovement : Unit
     private void Chase()
     {
         if (DistanceFromMe(target) > shootDistance * 0.8)
-            MoveTo(target.gameObject);
+            Pathfind(target.transform.position);
         else {
             shotWaitTime = shotDelay;
-            state = State.Shoot;
+            guardState = GuardState.Shoot;
         }
     }
 
@@ -103,19 +158,18 @@ public class GuardMovement : Unit
             if (DistanceFromMe(target) < shootDistance) 
                 Instantiate(
                     bullet,
-                    this.transform.position + 0.1f * (target.transform.position - this.transform.position),
-                    this.transform.rotation,
-                    this.transform
+                    transform.position + (target.transform.position - transform.position).normalized * radius,
+                    transform.rotation,
+                    transform
                 );
-
-            state = State.Return;
+            guardState = GuardState.Return;
         }
     }
 
     private void Return() {
         int nearestWaypoint = 0;
         float minDistance = DistanceFromMe(waypoints[nearestWaypoint]);
-        for(int i = 1; i < waypoints.Length; i++) {
+        for(int i = 1; i < waypoints.Count; i++) {
             float distance = DistanceFromMe(waypoints[i]);
             if(distance < minDistance) {
                 nearestWaypoint = i;
@@ -124,24 +178,23 @@ public class GuardMovement : Unit
         }
         currentWaypoint = nearestWaypoint;
 
-        state = State.Patrol;
+        guardState = GuardState.Patrol;
     }
 
     private void Update()
     {
-        Debug.Log(state);
-        switch(state) {
-            case State.Patrol:
+        switch(guardState) {
+            case GuardState.Patrol:
                 Patrol();
                 Detect();
                 break;
-            case State.Chase:
+            case GuardState.Chase:
                 Chase();
                 break;
-            case State.Shoot:
+            case GuardState.Shoot:
                 Shoot();
                 break;
-            case State.Return:
+            case GuardState.Return:
                 Return();
                 break;
         }
