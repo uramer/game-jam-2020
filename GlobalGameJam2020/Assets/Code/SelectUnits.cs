@@ -27,7 +27,17 @@ public class SelectUnits : MonoBehaviour
 
             UpdateSelected(startPos, endPos);
         }
-        MoveSelected();
+        if(Input.GetMouseButtonDown(1)) {
+            RaycastHit rayCastHit = new RaycastHit();
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out rayCastHit)) {
+                foreach(GameObject obj in selected) {
+                    Unit unit = obj.GetComponent<Unit>();
+                    unit.Pathfind(rayCastHit.point);
+                }
+            }
+        }
+        //MoveSelected();
     }
 
     void UpdateSelected(Vector2 start, Vector2 end) {

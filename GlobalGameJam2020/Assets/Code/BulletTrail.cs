@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletTrail : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private GameObject target;
+    private Unit target;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
