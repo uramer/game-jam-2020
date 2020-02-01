@@ -5,28 +5,23 @@ using UnityEngine;
 public class BulletTrail : MonoBehaviour
 {
     [SerializeField] private float speed;
-    private Vector3 target;
-    
-    private void Movement()
+    private GameObject target;
+
+    private void OnTriggerEnter(Collider other)
     {
-        this.transform.position += speed * (target - this.transform.position).normalized * Time.deltaTime;
+        /*if (other.transform.gameObject.tag == "Enemy"){ }
+        else*/
+        Destroy(this);
+        if(other.gameObject == target)
+            Destroy(target);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.transform.gameObject.tag == "Enemy"){ }
-        else
-            Destroy(this);
-    }
-
-    private void Awake()
+    private void Start()
     {
         target = GetComponentInParent<GuardMovement>().target;
-        transform.parent = null;
-    }
-
-    private void Update() 
-    {
-        Movement();
+        //transform.parent = null;
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.AddForce(
+            (target.transform.position - this.transform.position).normalized * speed, ForceMode2D.Impulse);
     }
 }
