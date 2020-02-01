@@ -55,7 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Code\Guard Movement.cs" />
+     <Compile Include="Assets\Code\GuardMovement.cs" />
+     <Compile Include="Assets\Code\RandomTile.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

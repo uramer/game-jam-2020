@@ -1,7 +1,7 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
+/[Tt]emp/
 [Oo]bj/
 [Bb]uild
 [Bb]uilds/
@@ -14,3 +14,4 @@ sysinfo.txt
 *.meta
 
 .vs
+.vscode
