@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 11500000, guid: 396fbf27446b28646bfbb24381850414, type: 3}
   m_Name: Concrete
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
@@ -34,3 +34,10 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  sprites:
+  - {fileID: 21300000, guid: e83b415fd0369e8418bf4e0d14d7478e, type: 3}
+  - {fileID: 21300000, guid: 86741dfc4b6906145a3db6408da13a1a, type: 3}
+  spriteWeights:
+  - 1
+  - 1
+  preview: {fileID: 0}

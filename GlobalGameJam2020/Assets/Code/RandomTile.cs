@@ -34,7 +34,7 @@ public class RandomTile : Tile
     }
 
     #if UNITY_EDITOR
-    [MenuItem("Assets/Tilemaps/Tiles/RandomTile")]
+    [MenuItem("Assets/Create/Random Tile")]
     public static void CreatePrisonTile()
     {
         string path = EditorUtility.SaveFilePanelInProject("Save RandomTile", "New RandomTile", "asset", "Save RandomTile", "Assets");
