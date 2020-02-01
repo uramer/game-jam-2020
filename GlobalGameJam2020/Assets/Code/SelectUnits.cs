@@ -8,13 +8,11 @@ public class SelectUnits : MonoBehaviour
     private List<GameObject> selected;
     private Vector2 startPos, startMousePos;
 
-    // Start is called before the first frame update
     void Start()
     {
         selected = new List<GameObject>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(0)) {
@@ -37,7 +35,6 @@ public class SelectUnits : MonoBehaviour
                 }
             }
         }
-        //MoveSelected();
     }
 
     void UpdateSelected(Vector2 start, Vector2 end) {
@@ -75,12 +72,6 @@ public class SelectUnits : MonoBehaviour
                     selected.Add(hit.collider.gameObject);
                 }
             }
-        }
-    }
-
-    void MoveSelected() {
-        foreach(GameObject unit in selected) {
-            unit.transform.Translate(new Vector2(1, 0) * Time.deltaTime);
         }
     }
 
