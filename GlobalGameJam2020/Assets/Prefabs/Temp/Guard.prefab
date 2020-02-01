@@ -116,7 +116,7 @@ MonoBehaviour:
   bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
   waypoints: []
   waitTime: []
-  shotDelay: 0.5
+  shotDelay: 1.5
   units: []
   chaseDistance: 300
   shootDistance: 100
