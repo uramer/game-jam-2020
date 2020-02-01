@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private double maxHeight;
-    [SerializeField] private double maxWidth;
-    [SerializeField] private float speed;
+    private int maxHeight;
+    private int maxWidth;
+    [SerializeField] private float speed = 0.1f;
+
+    private void Start() {
+        Camera camera = GetComponent<Camera>();
+        maxHeight = camera.pixelHeight;
+        maxWidth = camera.pixelWidth;
+    }
 
     private void Update()
     {            
