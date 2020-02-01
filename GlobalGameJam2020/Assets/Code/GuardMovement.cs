@@ -14,7 +14,7 @@ public class GuardMovement : Unit
     [SerializeField] private float waypointThreshold = 0.6f;
     [SerializeField] private float chaseDistance;
     [SerializeField] private float shootDistance;
-    [SerializeField] private float FOV = 120;
+    [SerializeField] private float FOV = 90;
 
     private List<Waypoint> waypoints = new List<Waypoint>();
     public Unit target;
@@ -78,19 +78,16 @@ public class GuardMovement : Unit
             unit = units[i];
             if(unit.GetState() == State.Dead) continue;
             float distance = distances[i];
-            Debug.Log($"distance {distance}");
             float angle = Vector3.Angle(transform.forward, unit.transform.position - transform.position);
-            Debug.Log($"angle {angle}");
             if(Math.Abs(angle) > FOV) continue;
-            /*RaycastHit2D lineOfSight = Physics2D.Raycast(
+            RaycastHit2D lineOfSight = Physics2D.Raycast(
                 transform.position,
                 unit.transform.position - transform.position,
-                sightRange + unit.detectionRange
+                sightRange + unit.detectionRange,
+                ~LayerMask.GetMask("EnemyInternal")
             );
             if(lineOfSight.collider == null) continue;
-            Debug.Log($"COLLIDED");
-            if(lineOfSight.collider.gameObject != unit.gameObject) continue;
-            Debug.Log($"LOS");*/
+            if(lineOfSight.collider.gameObject != unit.GetInternalGameObject()) continue;
             if(distance < shootDistance) {
                 if(fastestWithinShot == null || unit.speed > maxSpeed) {
                     fastestWithinShot = unit;
@@ -108,8 +105,6 @@ public class GuardMovement : Unit
                     minDistanceFast = distance;
                 }
         }
-
-        Debug.Log($"angle {fastestWithinShot != null} {closestSlow != null} {closestFast != null}");
 
         if(fastestWithinShot != null) target = fastestWithinShot;
         else if(closestSlow != null) target = closestSlow;

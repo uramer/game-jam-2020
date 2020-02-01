@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Bear
   - Humanoid
+  - EnemyInternal
+  - PlayerInternal
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - EnemyInternal
   - 
   - 
   - 
