@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 396fbf27446b28646bfbb24381850414, type: 3}
-  m_Name: Concrete
+  m_Name: VWall
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33,12 +33,10 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 0
+  m_ColliderType: 2
   sprites:
-  - {fileID: 21300000, guid: e83b415fd0369e8418bf4e0d14d7478e, type: 3}
-  - {fileID: 21300000, guid: 86741dfc4b6906145a3db6408da13a1a, type: 3}
+  - {fileID: 21300000, guid: 391c80434b95718459b484e710bb58ba, type: 3}
   spriteWeights:
-  - 1
   - 1
   animated: 0
   minAnimationSpeed: 1
