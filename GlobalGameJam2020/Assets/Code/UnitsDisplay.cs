@@ -10,8 +10,12 @@ public class UnitsDisplay : MonoBehaviour
 	[SerializeField] SelectUnits selectUnitsScript;
 	[SerializeField] Canvas canvas;
 
+	public Sprite sprite;
+
 	private float canvasWidth, canvasHeight;
 	private List<GameObject> texts = new List<GameObject>();
+	//private List<GameObject> iconsOfUnits = new List<GameObject>();
+	private Dictionary<GameObject, GameObject> unitToIcon = new Dictionary<GameObject, GameObject>();
 
     void Start()
     {
@@ -19,7 +23,17 @@ public class UnitsDisplay : MonoBehaviour
     	RectTransform rt = canvas.gameObject.GetComponent<RectTransform>();
     	canvasWidth = rt.rect.width;
     	canvasHeight = rt.rect.height;
-    	Debug.Log(canvasWidth + " " + canvasHeight);
+    	//Debug.Log(canvasWidth + " " + canvasHeight);
+    	//addIcon("icon", new Vector3(10-canvasWidth/2, 10-canvasHeight/2, 0));
+
+
+    	/*GameObject[] units = GameObject.FindGameObjectsWithTag("Player");
+    	foreach(GameObject unit in units) {
+
+
+    		texts.Add(addText(unit.name, new Vector3(pos, 20 - canvasHeight / 2, 0), Color.black));
+    		pos += 50;
+    	}*/
     }
 
     void Update()
@@ -54,5 +68,18 @@ public class UnitsDisplay : MonoBehaviour
         rectTransform.localPosition = pos;
         rectTransform.sizeDelta = new Vector2(100, 20);
         return text;
+    }
+
+    void addIcon(string name, Vector3 pos) {
+    	GameObject icon = new GameObject();
+    	icon.name = name;
+    	icon.transform.parent = canvas.transform;
+    	Image image = icon.AddComponent<Image>();
+    	image.sprite = sprite;
+    	RectTransform rectTransform = image.GetComponent<RectTransform>();
+    	rectTransform.pivot = new Vector2(0, 0);
+        rectTransform.localPosition = pos; // new Vector3(10-canvasWidth/2, 10-canvasHeight/2, 0);
+        rectTransform.sizeDelta = new Vector2(30, 30);
+        Debug.Log(icon.GetInstanceID());
     }
 }
