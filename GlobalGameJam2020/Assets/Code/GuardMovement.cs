@@ -112,7 +112,6 @@ public class GuardMovement : Unit
 
     private void Patrol()
     {
-        Debug.Log($"Patrol {currentWaypoint} {DistanceFromMe(waypoints[currentWaypoint])} {agent.destination}");
         if (DistanceFromMe(waypoints[currentWaypoint]) >= waypointThreshold)
         {
             Pathfind(waypoints[currentWaypoint].transform.position);
