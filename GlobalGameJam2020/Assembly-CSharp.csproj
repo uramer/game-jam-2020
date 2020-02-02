@@ -55,7 +55,7 @@
      <Compile Include="Assets\Code\UnitsDisplay.cs" />
      <Compile Include="Assets\Code\Waypoint.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
-     <None Include="Assets\FogOfWar\FogOfWar.shader" />
+     <None Include="Assets\FogOfWar\Other\FogOfWar.shader" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
