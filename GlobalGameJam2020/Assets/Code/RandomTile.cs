@@ -8,7 +8,7 @@ public class RandomTile : Tile
     private Sprite[] sprites;
 
     [SerializeField]
-    private float[] spriteWeights;
+    private float[] spriteWeights = {1};
 
     [SerializeField]
     private bool animated = false;
