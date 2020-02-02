@@ -17,11 +17,7 @@ TagManager:
   - 
   - 
   - FogOfWar
-  - 
   - EnemyInternal
-  - FogOfWar
-  - 
-  - Activateable
   - 
   - 
   - 
@@ -45,8 +41,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Decorations
-    uniqueID: 645693685
   - name: FogOfWar
     uniqueID: 1596573963
     locked: 0
