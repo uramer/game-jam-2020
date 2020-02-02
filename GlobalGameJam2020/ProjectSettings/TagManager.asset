@@ -5,10 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Bear
-  - Humanoid
-  - EnemyInternal
   - PlayerInternal
+  - EnemyInternal
   layers:
   - Default
   - TransparentFX
@@ -18,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
   - FogOfWar
+  - 
   - EnemyInternal
   - FogOfWar
   - 
@@ -49,6 +47,8 @@ TagManager:
   m_SortingLayers:
   - name: Decorations
     uniqueID: 645693685
+  - name: FogOfWar
+    uniqueID: 1596573963
     locked: 0
   - name: Default
     uniqueID: 0
