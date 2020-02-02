@@ -20,7 +20,7 @@ TagManager:
   - HUD
   - EnemyInternal
   - Activateable
-  - 
+  - EditorOnly
   - 
   - 
   - 

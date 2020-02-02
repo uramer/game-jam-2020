@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Lumberjack.unity
     guid: 27727e520ba3f644bb33516097de2eff
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Levels/Dam.unity
     guid: 702de87e24a29984fa6f886524c97f69
   m_configObjects:
