@@ -190,3 +190,6 @@ MonoBehaviour:
   speed: 2
   detectionRange: 4
   sightRange: 3
+  activateDelay: 1
+  activateDistance: 1.5
+  canDestroy: 1
