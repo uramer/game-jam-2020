@@ -67,18 +67,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dc6265568c94e47b2d57eb196c80ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   detectionRange: 3
   sightRange: 4
   activateDelay: 1
   activateDistance: 1.5
   canDestroy: 0
+  essential: 0
   bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
   waypointsParent: {fileID: 0}
-  shotDelay: 0.5
+  shotDelay: 1.5
   waypointThreshold: 0.6
-  chaseDistance: 3
-  shootDistance: 1.5
+  shootDistance: 4
   FOV: 60
   target: {fileID: 0}
 --- !u!1 &6452028921501985120

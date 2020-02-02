@@ -89,6 +89,9 @@ public class Unit : MonoBehaviour {
         internalGameObject.GetComponent<Rigidbody2D>().simulated = false;
         internalGameObject.GetComponent<SpriteRenderer>().enabled = false;
         agent.isStopped = true;
+        if(essential) {
+            LevelManager.Get().Lose();
+        }
     }
 
 }

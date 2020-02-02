@@ -67,9 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df61821cd0c13247835d9ec0833a4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   detectionRange: 3
   sightRange: 4
+  activateDelay: 2
+  activateDistance: 1.5
+  canDestroy: 0
+  essential: 1
 --- !u!1 &5387010108677943706
 GameObject:
   m_ObjectHideFlags: 0

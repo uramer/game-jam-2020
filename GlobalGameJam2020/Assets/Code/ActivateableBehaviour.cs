@@ -5,8 +5,7 @@ public class ActivateableBehaviour : MonoBehaviour {
 
     public virtual void Activate(Unit unit) {
         if(winCondition) {
-            LevelManager manager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-            manager.Win();
+            LevelManager.Get().Win();
         }
     }
     

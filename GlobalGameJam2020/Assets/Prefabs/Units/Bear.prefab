@@ -187,9 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df61821cd0c13247835d9ec0833a4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   detectionRange: 4
   sightRange: 3
   activateDelay: 1
-  activateDistance: 1.5
+  activateDistance: 2.2
   canDestroy: 1
+  essential: 0

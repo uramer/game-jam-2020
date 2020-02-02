@@ -12,7 +12,6 @@ public class GuardMovement : Unit
 
     [SerializeField] private float shotDelay;
     [SerializeField] private float waypointThreshold = 0.6f;
-    [SerializeField] private float chaseDistance;
     [SerializeField] private float shootDistance;
     [SerializeField] private float FOV = 90;
 
