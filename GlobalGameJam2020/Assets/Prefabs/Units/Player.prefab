@@ -73,6 +73,7 @@ MonoBehaviour:
   activateDelay: 2
   activateDistance: 1.5
   canDestroy: 0
+  canActivateComplex: 1
   essential: 1
 --- !u!1 &5387010108677943706
 GameObject:

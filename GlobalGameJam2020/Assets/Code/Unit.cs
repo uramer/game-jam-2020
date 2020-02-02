@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour {
     [SerializeField] public float activateDelay = 1f;
     [SerializeField] public float activateDistance = 1.5f;
     [SerializeField] public bool canDestroy = false;
+    [SerializeField] public bool canActivateComplex = false;
     [SerializeField] public bool essential = false;
     protected NavMeshAgent agent = null;
 
