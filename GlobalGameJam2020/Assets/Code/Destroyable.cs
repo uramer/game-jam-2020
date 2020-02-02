@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Destroyable : ActivateableBehaviour {
 
-    public override void Activate(Unit unit) {
+    public override bool Activate(Unit unit) {
+        if(!base.Activate(unit)) return false;
         if(unit.canDestroy)
             Destroy(gameObject);
+        return true;
     }
     
 }

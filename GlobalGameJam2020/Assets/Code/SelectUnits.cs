@@ -19,7 +19,7 @@ public class SelectUnits : MonoBehaviour
             startMousePos = Input.mousePosition;
             startPos = Camera.main.ScreenToWorldPoint(new Vector3(startMousePos.x, startMousePos.y, -Camera.main.transform.position.z)); //FIX
         }
-        if(Input.GetMouseButtonUp(0)) {
+        if(Input.GetMouseButtonUp(0) && startMousePos.y >= 50) {
             Vector2 pos = Input.mousePosition;
             Vector2 endPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -Camera.main.transform.position.z));
 
@@ -91,5 +91,14 @@ public class SelectUnits : MonoBehaviour
 
     public List<GameObject> GetSelected() {
         return selected;
+    }
+
+    public void ClickSelect(GameObject unit) {
+        if(selected.Contains(unit)) {
+            selected.Remove(unit);
+        }
+        else {
+            selected.Add(unit);
+        }
     }
 }

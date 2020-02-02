@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour {
     [SerializeField] public float activateDelay = 1f;
     [SerializeField] public float activateDistance = 1.5f;
     [SerializeField] public bool canDestroy = false;
+    [SerializeField] public bool canActivateComplex = false;
+    [SerializeField] public bool essential = false;
     protected NavMeshAgent agent = null;
 
     protected GameObject internalGameObject = null;
@@ -40,10 +42,9 @@ public class Unit : MonoBehaviour {
     }
 
     protected void Update() {
-        Debug.Log($"{state}");
         if(state == State.Dead) return;
         if(activateTarget != null) {
-            Debug.Log($"{DistanceFromMe(activateTarget)} {activateWait} {Time.deltaTime}");
+            //Debug.Log($"{DistanceFromMe(activateTarget)} {activateWait} {Time.deltaTime}");
             if(state == State.Activating) {
                 if(activateWait <= 0) {
                     activateTarget.Activate(this);
@@ -89,6 +90,9 @@ public class Unit : MonoBehaviour {
         internalGameObject.GetComponent<Rigidbody2D>().simulated = false;
         internalGameObject.GetComponent<SpriteRenderer>().enabled = false;
         agent.isStopped = true;
+        if(essential) {
+            LevelManager.Get().Lose();
+        }
     }
 
 }

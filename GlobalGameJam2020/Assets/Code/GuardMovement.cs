@@ -12,7 +12,6 @@ public class GuardMovement : Unit
 
     [SerializeField] private float shotDelay;
     [SerializeField] private float waypointThreshold = 0.6f;
-    [SerializeField] private float chaseDistance;
     [SerializeField] private float shootDistance;
     [SerializeField] private float FOV = 90;
 
@@ -112,7 +111,6 @@ public class GuardMovement : Unit
 
     private void Patrol()
     {
-        Debug.Log($"Patrol {currentWaypoint} {DistanceFromMe(waypoints[currentWaypoint])} {agent.destination}");
         if (DistanceFromMe(waypoints[currentWaypoint]) >= waypointThreshold)
         {
             Pathfind(waypoints[currentWaypoint].transform.position);
