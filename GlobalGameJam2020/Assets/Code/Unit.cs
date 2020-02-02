@@ -40,7 +40,7 @@ public class Unit : MonoBehaviour {
     }
 
     protected void Update() {
-        Debug.Log($"{state}");
+        //Debug.Log($"{state}");
         if(state == State.Dead) return;
         if(activateTarget != null) {
             Debug.Log($"{DistanceFromMe(activateTarget)} {activateWait} {Time.deltaTime}");
