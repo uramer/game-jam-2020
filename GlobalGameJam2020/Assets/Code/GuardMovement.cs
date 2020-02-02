@@ -1,79 +1,189 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using System;
 
-public class GuardMovement : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+public class GuardMovement : Unit
 {    
-    [SerializeField] private float speed;
-    [SerializeField] private float distance;
-    [SerializeField] private GameObject[] nodes;
-    [SerializeField] private float[] waitTime;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject waypointsParent;
 
-    [SerializeField] private GameObject[] players;
-    [SerializeField] private float distanceToTarget;
+    [SerializeField] private float shotDelay;
+    [SerializeField] private float waypointThreshold = 0.6f;
+    [SerializeField] private float chaseDistance;
+    [SerializeField] private float shootDistance;
+    [SerializeField] private float FOV = 90;
 
-    private int counter = 0;
-    System.DateTime now;
+    private List<Waypoint> waypoints = new List<Waypoint>();
+    public Unit target;
+    private int currentWaypoint = 0;
+    private float patrolWaitTime = 0;
+    private float shotWaitTime = 0;
+    private float radius = 0.5f;
+    private enum GuardState {
+        Patrol,
+        Chase,
+        Shoot,
+        Return
+    }
 
-    private string[] movementTypes = { "patrol", "chase" };
-    private int chosenMovement = 0;
+    private GuardState guardState = GuardState.Patrol;
 
-    private void Movement()
+    protected new void Start() {
+        base.Start();
+
+        Vector3 size = internalGameObject.GetComponent<Collider2D>().bounds.size;
+        radius = Math.Max(size.x, size.y);
+
+        foreach(Transform tr in waypointsParent.transform) {
+            waypoints.Add(tr.gameObject.GetComponent<Waypoint>());
+        }
+        patrolWaitTime = waypoints[0].waitTime;
+    }
+
+    private void PickTarget()
     {
+        target = null;
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
+        Unit unit = null;
+        List<Unit> units = new List<Unit>();
+        List<float> distances = new List<float>();
+
+        foreach (GameObject obj in gameObjects) {
+            unit = obj.GetComponent<Unit>();
+            if(unit == this) continue;
+            units.Add(unit);
+            distances.Add(DistanceFromMe(unit));
+        }
+
+        Unit fastestWithinShot = null;
+        Unit closestSlow = null;
+        Unit closestFast = null;
+        float maxSpeed = 0f;
+        float minDistanceSlow = 0f;
+        float minDistanceFast = 0f;
         
-        if (Mathf.Abs(nodes[counter].transform.position.x - this.transform.position.x) >= distance && Mathf.Abs(nodes[counter].transform.position.y - this.transform.position.y) >= distance)
+        for(int i = 0; i < units.Count; i++)
         {
-            this.transform.position += speed * (nodes[counter].transform.position - this.transform.position).normalized * Time.deltaTime;
-            now = System.DateTime.Now.AddSeconds(waitTime[counter]);
-        }
-        else
-        {
-            if (System.DateTime.Now >= now)
-            {
-                if (counter >= nodes.Length - 1)
-                    counter = 0;
-                else
-                    counter++;
+            unit = units[i];
+            if(unit.GetState() == State.Dead) continue;
+            float distance = distances[i];
+            float angle = Vector3.Angle(transform.forward, unit.transform.position - transform.position);
+            if(Math.Abs(angle) > FOV) continue;
+            RaycastHit2D lineOfSight = Physics2D.Raycast(
+                transform.position,
+                unit.transform.position - transform.position,
+                sightRange + unit.detectionRange,
+                ~LayerMask.GetMask("EnemyInternal")
+            );
+            if(lineOfSight.collider == null) continue;
+            if(lineOfSight.collider.gameObject != unit.GetInternalGameObject()) continue;
+            if(distance < shootDistance) {
+                if(fastestWithinShot == null || unit.speed > maxSpeed) {
+                    fastestWithinShot = unit;
+                    maxSpeed = unit.speed;
+                }
             }
+            else if(speed <= unit.speed) {
+                if(closestSlow == null || distance < minDistanceSlow) {
+                    closestSlow = unit;
+                    minDistanceSlow = distance;
+                }
+            }
+            else if(closestFast == null || distance < minDistanceFast) {
+                    closestFast = unit;
+                    minDistanceFast = distance;
+                }
         }
+
+        if(fastestWithinShot != null) target = fastestWithinShot;
+        else if(closestSlow != null) target = closestSlow;
+        else target = closestFast;
     }
 
     private void Detect()
     {
-        Vector3 target = ChooseClosest();
+        PickTarget();
+        if (target != null && (DistanceFromMe(target) < sightRange + target.detectionRange))
+            guardState = GuardState.Chase;
+    }
 
-        if (Mathf.Pow(Mathf.Pow(target.x, 2) + Mathf.Pow(target.y, 2), -2) - Mathf.Pow(Mathf.Pow(this.transform.position.x, 2) + Mathf.Pow(this.transform.position.y, 2), -2) < distanceToTarget)
-            chosenMovement = 1;
+    private void Patrol()
+    {
+        //Debug.Log($"Patrol {currentWaypoint} {DistanceFromMe(waypoints[currentWaypoint])} {agent.destination}");
+        if (DistanceFromMe(waypoints[currentWaypoint]) >= waypointThreshold)
+        {
+            Pathfind(waypoints[currentWaypoint].transform.position);
+        }
         else
-            chosenMovement = 0;
+        {
+            if(patrolWaitTime <= 0) {
+                currentWaypoint++;
+                if (currentWaypoint >= waypoints.Count)
+                    currentWaypoint = 0;
+                patrolWaitTime = waypoints[currentWaypoint].waitTime;
+            }
+            else patrolWaitTime -= Time.deltaTime;
+        }
     }
 
     private void Chase()
     {
-
+        if (DistanceFromMe(target) > shootDistance * 0.8)
+            Pathfind(target.transform.position);
+        else {
+            shotWaitTime = shotDelay;
+            guardState = GuardState.Shoot;
+        }
     }
 
-    private Vector3 ChooseClosest()
-    {
-        Vector3 closestPlayer = new Vector3(100, 100, 100);
+    private void Shoot() {
+        shotWaitTime -= Time.deltaTime;
+        if(shotWaitTime <= 0) {
+            if (DistanceFromMe(target) < shootDistance) 
+                Instantiate(
+                    bullet,
+                    transform.position + (target.transform.position - transform.position).normalized * radius,
+                    transform.rotation,
+                    transform
+                );
+            guardState = GuardState.Return;
+        }
+    }
 
-        foreach (var a in players)
-        {
-            if (Mathf.Pow(Mathf.Pow(closestPlayer.x, 2) + Mathf.Pow(closestPlayer.y, 2), -2) - Mathf.Pow(Mathf.Pow(a.transform.position.x, 2) + Mathf.Pow(a.transform.position.y, 2), -2) > 0)
-            {
-                closestPlayer = a.transform.position;
+    private void Return() {
+        int nearestWaypoint = 0;
+        float minDistance = DistanceFromMe(waypoints[nearestWaypoint]);
+        for(int i = 1; i < waypoints.Count; i++) {
+            float distance = DistanceFromMe(waypoints[i]);
+            if(distance < minDistance) {
+                nearestWaypoint = i;
+                minDistance = distance;
             }
         }
-        return closestPlayer;
+        currentWaypoint = nearestWaypoint;
+
+        guardState = GuardState.Patrol;
     }
 
-    private void Update()
+    private new void Update()
     {
-        Detect();
-
-        if (movementTypes[chosenMovement] == "patrol")
-            Movement();
-        else if (movementTypes[chosenMovement] == "chase")
-            Chase();
+        switch(guardState) {
+            case GuardState.Patrol:
+                Patrol();
+                Detect();
+                break;
+            case GuardState.Chase:
+                Chase();
+                break;
+            case GuardState.Shoot:
+                Shoot();
+                break;
+            case GuardState.Return:
+                Return();
+                break;
+        }
     }
 }

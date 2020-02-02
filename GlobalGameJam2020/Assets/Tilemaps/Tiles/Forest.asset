@@ -36,7 +36,9 @@ MonoBehaviour:
   m_ColliderType: 2
   sprites:
   - {fileID: 21300000, guid: 600d0327cedf8214e9efdd957b110d7b, type: 3}
+  - {fileID: 21300000, guid: e8d0eb17f548007458dfce7e897eaa08, type: 3}
   spriteWeights:
+  - 1
   - 1
   animated: 0
   minAnimationSpeed: 1
