@@ -69,7 +69,8 @@ public class GuardMovement : Unit
             unit = units[i];
             if(unit.GetState() == State.Dead) continue;
             float distance = distances[i];
-            float angle = Vector3.Angle(transform.forward, unit.transform.position - transform.position);
+            Vector3 direction = agent.steeringTarget - agent.transform.position;
+            float angle = Vector3.Angle(direction, unit.transform.position - transform.position);
             if(Math.Abs(angle) > FOV) continue;
             RaycastHit2D lineOfSight = Physics2D.Raycast(
                 transform.position,
@@ -78,7 +79,9 @@ public class GuardMovement : Unit
                 ~LayerMask.GetMask("EnemyInternal")
             );
             if(lineOfSight.collider == null) continue;
+            Debug.Log("collider");
             if(lineOfSight.collider.gameObject != unit.GetInternalGameObject()) continue;
+            Debug.Log("LOS");
             if(distance < shootDistance) {
                 if(fastestWithinShot == null || unit.speed > maxSpeed) {
                     fastestWithinShot = unit;
@@ -138,6 +141,7 @@ public class GuardMovement : Unit
     }
 
     private void Shoot() {
+        agent.isStopped = true;
         shotWaitTime -= Time.deltaTime;
         if(shotWaitTime <= 0) {
             if (DistanceFromMe(target) < shootDistance) 
@@ -148,6 +152,7 @@ public class GuardMovement : Unit
                     transform
                 );
             guardState = GuardState.Return;
+            agent.isStopped = false;
         }
     }
 
@@ -168,6 +173,7 @@ public class GuardMovement : Unit
 
     private new void Update()
     {
+        Debug.Log($"{guardState}");
         switch(guardState) {
             case GuardState.Patrol:
                 Patrol();

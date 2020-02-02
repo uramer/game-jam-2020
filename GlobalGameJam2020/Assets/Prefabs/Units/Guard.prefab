@@ -78,9 +78,9 @@ MonoBehaviour:
   bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
   waypointsParent: {fileID: 0}
   shotDelay: 1.5
-  waypointThreshold: 0.6
-  shootDistance: 4
-  FOV: 60
+  waypointThreshold: 0.7
+  shootDistance: 5
+  FOV: 120
   target: {fileID: 0}
 --- !u!1 &6452028921501985120
 GameObject:

@@ -10,7 +10,7 @@ public class BulletTrail : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         Unit unit = other.gameObject.GetComponentInParent<Unit>();
-        if (unit.gameObject.tag == "Player"){
+        if (unit != null && unit.gameObject.tag == "Player"){
             unit.Die();
         }
         if(other.gameObject != transform.parent)
