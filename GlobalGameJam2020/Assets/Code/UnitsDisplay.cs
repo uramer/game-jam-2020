@@ -35,6 +35,19 @@ public class UnitsDisplay : MonoBehaviour
 
     void Update()
     {
+    	// Select on HUD
+    	if (Input.GetMouseButtonDown(0)) {
+            Vector2 pos = Input.mousePosition - new Vector3(canvasWidth/2, canvasHeight/2, 0);
+            foreach(KeyValuePair<GameObject, GameObject> pair in unitToIcon) {
+	    		RectTransform rt = pair.Value.GetComponent<Image>().GetComponent<RectTransform>();
+	    		if(rt.localPosition.x <= pos.x && pos.x <= rt.localPosition.x + rt.sizeDelta.x
+	    				&& rt.localPosition.y <= pos.y && pos.y <= rt.localPosition.y + rt.sizeDelta.y
+	    				&& pair.Key.GetComponent<Unit>().GetState() != Unit.State.Dead) {
+	    			selectUnitsScript.ClickSelect(pair.Key);
+	    		}
+	    	}
+	    }
+
     	foreach(KeyValuePair<GameObject, GameObject> pair in unitToSelected) {
     		pair.Value.SetActive(false);
     		Unit u = pair.Key.GetComponent<Unit>();
