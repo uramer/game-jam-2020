@@ -16,16 +16,11 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
   - FogOfWar
   - 
-=======
-  - 
-  - FogOfWar
   - EnemyInternal
   - 
   - Activateable
->>>>>>> 11ef47a32cc3d57e6448d1cb398e5775c02953e5
   - 
   - 
   - 
@@ -49,14 +44,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-<<<<<<< HEAD
   - name: FogOfWar
     uniqueID: 1596573963
-=======
   - name: Decorations
     uniqueID: 645693685
->>>>>>> 11ef47a32cc3d57e6448d1cb398e5775c02953e5
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
