@@ -16,15 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1d0ab4ef71a692142b2461879af6af66
-  m_SerializeEntries:
-  - m_GUID: 27727e520ba3f644bb33516097de2eff
-    m_Address: Lumberjack
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 702de87e24a29984fa6f886524c97f69
-    m_Address: Dam
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fd6f1e109c000804999b80aac5a796fe, type: 2}
   m_SchemaSet:

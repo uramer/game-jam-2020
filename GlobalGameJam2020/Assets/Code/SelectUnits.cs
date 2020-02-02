@@ -51,7 +51,7 @@ public class SelectUnits : MonoBehaviour
         if(Input.GetMouseButtonDown(1)) {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             ActivateableBehaviour activateable = null;
-            if(Input.GetKey(KeyCode.LeftControl)) {
+            //if(Input.GetKey(KeyCode.LeftControl)) {
                 RaycastHit2D rayHit2D = Physics2D.Raycast(
                     ray.origin,
                     ray.direction,
@@ -62,7 +62,7 @@ public class SelectUnits : MonoBehaviour
                 if(collider != null) {
                     activateable = collider.gameObject.GetComponent<ActivateableBehaviour>();
                 }
-            }
+            //}
             RaycastHit rayCastHit = new RaycastHit();
             if (Physics.Raycast(ray.origin, ray.direction, out rayCastHit)) {
                 foreach(GameObject unitObject in selected) {
