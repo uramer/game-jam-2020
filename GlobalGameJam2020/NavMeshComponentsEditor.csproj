@@ -48,10 +48,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
+<<<<<<< HEAD
       <HintPath>D:\Program Files\Unity\2019.3.0f6\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>D:\Program Files\Unity\2019.3.0f6\Editor\Data\Managed/UnityEditor.dll</HintPath>
+=======
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed/UnityEditor.dll</HintPath>
+>>>>>>> bor2
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +69,7 @@
      <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
      <Compile Include="Assets\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
  <Reference Include="UnityEditor.UI">
+<<<<<<< HEAD
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
@@ -72,6 +80,18 @@
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+=======
+ <HintPath>D:/Bor/programiranje/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>D:/Bor/programiranje/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.TestRunner">
+ <HintPath>D:/Bor/programiranje/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>D:/Bor/programiranje/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+>>>>>>> bor2
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -248,7 +268,11 @@
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XRModule">
+<<<<<<< HEAD
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+=======
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+>>>>>>> bor2
  </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
@@ -265,11 +289,19 @@
  <Reference Include="UnityEditor.Android.Extensions">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
+<<<<<<< HEAD
  <Reference Include="UnityEditor.UWP.Extensions">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+=======
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>D:/Bor/programiranje/game-jam-2020/GlobalGameJam2020/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+>>>>>>> bor2
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
