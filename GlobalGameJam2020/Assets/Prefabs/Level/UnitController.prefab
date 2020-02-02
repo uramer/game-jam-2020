@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 472719884422514949}
   - component: {fileID: 3096065486224268217}
   m_Layer: 0
-  m_Name: UnitController 1
+  m_Name: UnitController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4999cf8a539083c4b818281cea8d2e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectRect: {fileID: 0}
 --- !u!114 &3096065486224268217
 MonoBehaviour:
   m_ObjectHideFlags: 0

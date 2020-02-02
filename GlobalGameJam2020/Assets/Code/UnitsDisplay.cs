@@ -36,7 +36,7 @@ public class UnitsDisplay : MonoBehaviour
     void Update()
     {
     	// Select on HUD
-    	if (Input.GetMouseButtonDown(0)) {
+    	if (Input.GetMouseButtonDown(0) && Input.mousePosition.y < 50) {
             Vector2 pos = Input.mousePosition - new Vector3(canvasWidth/2, canvasHeight/2, 0);
             foreach(KeyValuePair<GameObject, GameObject> pair in unitToIcon) {
 	    		RectTransform rt = pair.Value.GetComponent<Image>().GetComponent<RectTransform>();
