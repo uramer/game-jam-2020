@@ -11,10 +11,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{194EA97A-5D9A-6D7B-25E7-A9D74A898F26}</ProjectGuid>
+    <ProjectGuid>{C6675BBC-B362-4E51-060E-A7A5C20E30C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>NavMeshComponents</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -55,15 +55,68 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
- <Reference Include="UnityEditor.UI">
- <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+     <Compile Include="Assets\Code\ActivateableBehaviour.cs" />
+     <Compile Include="Assets\Code\BulletTrail.cs" />
+     <Compile Include="Assets\Code\CameraMovement.cs" />
+     <Compile Include="Assets\Code\Destroyable.cs" />
+     <Compile Include="Assets\Code\FogOfWar.cs" />
+     <Compile Include="Assets\Code\GuardMovement.cs" />
+     <Compile Include="Assets\Code\RandomTile.cs" />
+     <Compile Include="Assets\Code\SelectUnits.cs" />
+     <Compile Include="Assets\Code\Unit.cs" />
+     <Compile Include="Assets\Code\UnitsDisplay.cs" />
+     <Compile Include="Assets\Code\Waypoint.cs" />
+     <Compile Include="Assets\PlayerControls.cs" />
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.VSCode.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.CollabProxy.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Tilemap.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.2D.Tilemap.Extras">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>D:/programming/game-jam-2020/GlobalGameJam2020/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -241,24 +294,6 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.VR">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.WindowsStandalone.Extensions">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.WebGL.Extensions">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Android.Extensions">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UWP.Extensions">
- <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -605,6 +640,16 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>D:/Program Files/Unity/2019.3.0f6/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="NavMeshComponentsEditor.csproj">
+      <Project>{BC9EEB5C-7C8B-F8A9-A877-A4A388812EFF}</Project>
+      <Name>NavMeshComponentsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshComponents.csproj">
+      <Project>{194EA97A-5D9A-6D7B-25E7-A9D74A898F26}</Project>
+      <Name>NavMeshComponents</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
