@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
     [SerializeField] public int currentLevel = 0;
-    [SerializeField] public string[] levels;
+    [SerializeField] public string[] levels = { "Lumberjack", "Dam" };
 
     public static LevelManager Get() {
         return GameObject.Find("LevelManager").GetComponent<LevelManager>();

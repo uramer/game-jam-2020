@@ -45,7 +45,13 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col.a = 1.0f - col.r;
+                if(col.r >= 0.9f) col.a = 0;
+                else {
+                    col.r = 0;
+                    col.g = 0;
+                    col.b = 0;
+                    col.a = 1;
+                }
                 return fixed4(0,0,0, col.a);
             }
             ENDCG

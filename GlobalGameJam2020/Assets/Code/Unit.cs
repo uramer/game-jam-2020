@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour {
 
     protected GameObject internalGameObject = null;
 
-    protected SpriteRenderer renderer = null;
+    protected SpriteRenderer spriteRenderer = null;
 
     protected ActivateableBehaviour activateTarget = null;
 
@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour {
     protected void Start() {
         agent = GetComponent<NavMeshAgent>();
         internalGameObject = transform.GetChild(0).gameObject;
-        renderer = internalGameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = internalGameObject.GetComponent<SpriteRenderer>();
 
         Rigidbody2D rigidbody = internalGameObject.GetComponent<Rigidbody2D>();
         agent.avoidancePriority = (int)(rigidbody.mass * 10);
@@ -53,10 +53,10 @@ public class Unit : MonoBehaviour {
 
         Vector3 direction = agent.steeringTarget - agent.transform.position;
         if(direction.x <=0) {
-            renderer.flipX = false;
+            spriteRenderer.flipX = false;
         }
         else {
-            renderer.flipX = true;
+            spriteRenderer.flipX = true;
         }
 
         if(activateTarget != null) {

@@ -42,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 1090739404690394732, guid: 87c132399cd1d1347b74653f689b4d35,
         type: 3}
       propertyPath: orthographic size
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1090739404690394738, guid: 87c132399cd1d1347b74653f689b4d35,
         type: 3}
@@ -213,12 +213,12 @@ PrefabInstance:
     - target: {fileID: 3974046127293881113, guid: d9a7bc3b6a5cce449bfd5fcfdf4146a0,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1024
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 3974046127293881113, guid: d9a7bc3b6a5cce449bfd5fcfdf4146a0,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 768
+      value: 1556
       objectReference: {fileID: 0}
     - target: {fileID: 3974046127293881113, guid: d9a7bc3b6a5cce449bfd5fcfdf4146a0,
         type: 3}
