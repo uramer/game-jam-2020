@@ -31,7 +31,7 @@ public class GuardMovement : Unit
 
     private GuardState guardState = GuardState.Patrol;
 
-    protected void Start() {
+    protected new void Start() {
         base.Start();
 
         Vector3 size = internalGameObject.GetComponent<Collider2D>().bounds.size;
@@ -41,14 +41,6 @@ public class GuardMovement : Unit
             waypoints.Add(tr.gameObject.GetComponent<Waypoint>());
         }
         patrolWaitTime = waypoints[0].waitTime;
-    }
-
-    private float DistanceFromMe(GameObject a) {
-        return (a.transform.position - this.transform.position).magnitude;
-    }
-
-    private float DistanceFromMe(MonoBehaviour a) {
-        return (a.transform.position - this.transform.position).magnitude;
     }
 
     private void PickTarget()
@@ -176,7 +168,7 @@ public class GuardMovement : Unit
         guardState = GuardState.Patrol;
     }
 
-    private void Update()
+    private new void Update()
     {
         switch(guardState) {
             case GuardState.Patrol:
