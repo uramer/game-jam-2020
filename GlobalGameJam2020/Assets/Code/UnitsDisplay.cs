@@ -35,12 +35,19 @@ public class UnitsDisplay : MonoBehaviour
 
     void Update()
     {
-    	foreach(GameObject sel in unitToSelected.Values) {
-    		sel.SetActive(false);
+    	foreach(KeyValuePair<GameObject, GameObject> pair in unitToSelected) {
+    		pair.Value.SetActive(false);
+    		Unit u = pair.Key.GetComponent<Unit>();
+    		if(u.GetState() == Unit.State.Dead) {
+    			unitToIcon[pair.Key].SetActive(false);
+    		}
     	}
     	List<GameObject> selected = selectUnitsScript.GetSelected();
     	foreach(GameObject sel in selected) {
-    		unitToSelected[sel].SetActive(true);
+    		Unit u = sel.GetComponent<Unit>();
+    		if(u.GetState() != Unit.State.Dead) {
+    			unitToSelected[sel].SetActive(true);
+    		}
     	}
     }
 

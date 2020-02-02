@@ -51,7 +51,7 @@ public class SelectUnits : MonoBehaviour
         GameObject[] units = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject unit in units) {
             Vector2 pos = unit.transform.position;
-            if(minX <= pos.x && pos.x <= maxX && minY <= pos.y && pos.y <= maxY) {
+            if(unit.GetComponent<Unit>().GetState() != Unit.State.Dead && minX <= pos.x && pos.x <= maxX && minY <= pos.y && pos.y <= maxY) {
                 selected.Add(unit);
             }
         }
@@ -61,14 +61,14 @@ public class SelectUnits : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && hit.collider.gameObject.tag == "Player") {
+            if (hit.collider != null && hit.collider.gameObject.tag == "Player" && hit.collider.gameObject.GetComponent<Unit>().GetState() != Unit.State.Dead) {
                 selected.Add(hit.collider.gameObject);
             }
             else {
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 hit = Physics2D.Raycast(ray.origin, ray.direction);
-                if (hit.collider != null && hit.collider.gameObject.tag == "Player") {
+                if (hit.collider != null && hit.collider.gameObject.tag == "Player" && hit.collider.gameObject.GetComponent<Unit>().GetState() != Unit.State.Dead) {
                     selected.Add(hit.collider.gameObject);
                 }
             }
