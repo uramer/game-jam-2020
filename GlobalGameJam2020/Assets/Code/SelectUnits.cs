@@ -5,26 +5,49 @@ using UnityEngine;
 public class SelectUnits : MonoBehaviour
 {
 
+    [SerializeField] GameObject selectRect;
+
     private List<GameObject> selected;
     private Vector2 startPos, startMousePos;
+    private float canvasWidth, canvasHeight;
 
     void Start()
     {
         selected = new List<GameObject>();
+        selectRect.SetActive(false);
+
+        Canvas canvas = GameObject.Find("HUD").GetComponent<Canvas>();
+        RectTransform rt = canvas.gameObject.GetComponent<RectTransform>();
+        canvasWidth = rt.rect.width;
+        canvasHeight = rt.rect.height;
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) {
+        if(Input.GetMouseButtonDown(0)&& Input.mousePosition.y >= 50) {
             startMousePos = Input.mousePosition;
             startPos = Camera.main.ScreenToWorldPoint(new Vector3(startMousePos.x, startMousePos.y, -Camera.main.transform.position.z)); //FIX
+            
+            selectRect.SetActive(true);
         }
-        if(Input.GetMouseButtonUp(0) && startMousePos.y >= 50) {
+        if(Input.GetMouseButtonUp(0) && Input.mousePosition.y >= 50) {
             Vector2 pos = Input.mousePosition;
             Vector2 endPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, -Camera.main.transform.position.z));
 
+            selectRect.SetActive(false);
+
             UpdateSelected(startPos, endPos);
         }
+
+        // Draw select rectangle
+        if(selectRect.active) {
+            RectTransform rt = selectRect.GetComponent<RectTransform>();
+            rt.localPosition = new Vector3(Mathf.Min(startMousePos.x, Input.mousePosition.x) - canvasWidth/2,
+                                            Mathf.Min(startMousePos.y, Input.mousePosition.y) - canvasHeight/2, 0);
+            rt.sizeDelta = new Vector2(Mathf.Abs(startMousePos.x - Input.mousePosition.x),
+                                        Mathf.Abs(startMousePos.y - Input.mousePosition.y));
+        }
+
         if(Input.GetMouseButtonDown(1)) {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             ActivateableBehaviour activateable = null;

@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour {
 
     protected GameObject internalGameObject = null;
 
+    protected SpriteRenderer renderer = null;
+
     protected ActivateableBehaviour activateTarget = null;
 
     private float activateWait = 0f;
@@ -39,10 +41,24 @@ public class Unit : MonoBehaviour {
     protected void Start() {
         agent = GetComponent<NavMeshAgent>();
         internalGameObject = transform.GetChild(0).gameObject;
+        renderer = internalGameObject.GetComponent<SpriteRenderer>();
+
+        Rigidbody2D rigidbody = internalGameObject.GetComponent<Rigidbody2D>();
+        agent.avoidancePriority = (int)(rigidbody.mass * 10);
+        rigidbody.freezeRotation = true;  
     }
 
     protected void Update() {
         if(state == State.Dead) return;
+
+        Vector3 direction = agent.steeringTarget - agent.transform.position;
+        if(direction.x <=0) {
+            renderer.flipX = false;
+        }
+        else {
+            renderer.flipX = true;
+        }
+
         if(activateTarget != null) {
             //Debug.Log($"{DistanceFromMe(activateTarget)} {activateWait} {Time.deltaTime}");
             if(state == State.Activating) {

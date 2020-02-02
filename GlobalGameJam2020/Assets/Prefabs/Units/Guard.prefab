@@ -46,7 +46,7 @@ NavMeshAgent:
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 10000000
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -73,6 +73,7 @@ MonoBehaviour:
   activateDelay: 1
   activateDistance: 1.5
   canDestroy: 0
+  canActivateComplex: 0
   essential: 0
   bullet: {fileID: 1120972869674889915, guid: 16ff0ed076b47974f9d04009a3f51597, type: 3}
   waypointsParent: {fileID: 0}
@@ -153,8 +154,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.019191265, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 547a73bd5260fdd4e854ebe448bdbaed, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -188,7 +189,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6452028921501985120}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

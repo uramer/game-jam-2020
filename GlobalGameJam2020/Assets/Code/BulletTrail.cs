@@ -18,11 +18,16 @@ public class BulletTrail : MonoBehaviour
     }
 
     private void Update() {
-        transform.position += speed * Time.deltaTime * (targetPosition - transform.position).normalized;
+        Vector3 delta = targetPosition - transform.position;
+        if(delta.magnitude < 0.1f) Destroy(gameObject);
+        //else transform.position += speed * Time.deltaTime * delta.normalized;
     }
 
     private void Start()
     {
         targetPosition = GetComponentInParent<GuardMovement>().target.transform.position;
+        Vector3 delta = targetPosition - transform.position;
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.AddForce(speed * rigidbody.mass * delta.normalized, ForceMode2D.Impulse);
     }
 }
