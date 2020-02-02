@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!50 &8170821481566213674
 Rigidbody2D:
   serializedVersion: 4
@@ -111,7 +111,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  detectionRange: 4
+  detectionRange: 5
   sightRange: 3
   activateDelay: 1
   activateDistance: 2.2
@@ -266,12 +266,12 @@ PrefabInstance:
     - target: {fileID: 6535962771622097493, guid: b7c85b0bfd031d7419248e34ffad295c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6535962771622097493, guid: b7c85b0bfd031d7419248e34ffad295c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7c85b0bfd031d7419248e34ffad295c, type: 3}
